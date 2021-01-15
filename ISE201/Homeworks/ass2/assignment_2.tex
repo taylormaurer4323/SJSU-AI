@@ -1,0 +1,437 @@
+\documentclass[11pt]{article}
+% \pagestyle{empty}
+
+\setlength{\oddsidemargin}{-0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.9 in}
+\setlength{\textwidth}{7.0 in}
+\setlength{\textheight}{9.0 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0.3 in}
+\setlength{\parskip}{0.1 in}
+\usepackage{epsf}
+\usepackage{pseudocode}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+% \usepackage{times}
+% \usepackage{mathptm}
+
+\def\O{\mathop{\smash{O}}\nolimits}
+\def\o{\mathop{\smash{o}}\nolimits}
+\newcommand{\e}{{\rm e}}
+\newcommand{\R}{{\bf R}}
+\newcommand{\Z}{{\bf Z}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\begin{document}
+
+\textbf{Taylor Maurer, 10/1/2020, ISE201 HW2} \\
+
+\noindent \textbf{2.2.12} \emph{ In the design of an electromechanical product, 12 components are to be stacked into a cylindrical casing in a manner that minimizes the impact of shocks. One end of the casing is designated as the bottom and the other end is the top.}
+\begin{enumerate}
+\item If all components are different, how many different designs are possible?
+\\\textbf{Answer: } \\12! = 479001600
+\item If 7 components are identical to one another, but the others are different, how many different designs are possible?
+\\\textbf{Answer: } \\This can be found using permuations of similar objects, where we have 5 individual groupings (parts 1 through 5) and then the remaining part which is the same for the remaining 7 parts. This is given by:
+\begin{equation}
+\begin{split}
+\frac{n!}{n_1!n_2!n_3!...n_r!} &= \frac{12!}{(5*1!)*(7!)} \\
+&= 95040
+\end{split}
+\end{equation}
+
+\item If 3 components are of one type and identical to one another, and 4 components are of another type and identical to one another, but the others are different, how many different designs are possible?
+\\\textbf{Answer: }Similar to the previous problem, this time we have 2 groupings where one grouping has 3 components that are the same, the second grouping has 4 components the same, and then we have 5 different components remaining out of the twelve. So the number of different designs is given by the following:
+\begin{equation}
+\begin{split}
+\frac{n!}{n_1!n_2!n_3!...n_r!} &= \frac{12!}{(5*1!)*(4!)*(3!)} \\
+&= 3326400
+\end{split}
+\end{equation}
+\end{enumerate}
+
+
+\noindent \textbf{2.4.1} \emph{ If A, B, and C are mutually exclusive events with P(A) = 0.2, P(B) = 0.3, and P(C) = 0.4, determine the following probabilities:}
+\begin{enumerate}
+\item P(A $\cup$ B $\cup$ C)
+\\\textbf{Answer: }
+\begin{equation}
+ = P(A) + P(B) + P(C) = 0.9
+\end{equation}
+\item P(A $\cap$ B $\cap$ C)
+\\\textbf{Answer: }
+\begin{equation}
+ = 0
+\end{equation}
+
+\item P(A $\cap$ B)
+\\\textbf{Answer: }
+\begin{equation}
+ = 0
+\end{equation}
+
+\item P[(A $\cup$ B) $\cap$ C]
+\\\textbf{Answer: }
+\begin{equation}
+ = 0
+\end{equation}
+
+\item P(A' $\cap$ B' $\cap$ C')
+\\\textbf{Answer: }
+\begin{equation}
+ = 1 - P(A) + P(B) + P(C) = 1 - 0.9 = 0.1
+\end{equation}
+\end{enumerate}
+
+\noindent \textbf{2.5.6} \emph{ A batch of 500 containers for frozen orange juice contains 5 that are defective. Three are selected, at random, without replacement from the batch.}
+\begin{enumerate}
+\item What is the probability that the second one selected is defective given that the first one was defective?
+\\\textbf{Answer: } After one defective part is taken out of the batch the probability of selecting another defective part is $\frac{4}{499}$.
+\item What is the probability that the first two selected are defective?
+\\\textbf{Answer: } This is given by the following
+\begin{equation}
+\frac{5}{500}\frac{4}{499} = 0.0000641
+\end{equation}
+\item What is the probability that the first two selected are both acceptable?
+\\\textbf{Answer: } This is given by the following
+\begin{equation}
+\frac{495}{500}\frac{494}{499} = 0.98008
+\end{equation}
+\item What is the probability that the third one selected is defective given that the first and second ones selected were defective?
+\\\textbf{Answer: } After removing 2 defective parts there are only 3 left. After removing 2 parts in general there are 498 parts left. Therefore the answer is: $\frac{3}{498}$.
+\item What is the probability that the third one selected is defective given that the first one selected was defective and the second one selected was okay?
+\\\textbf{Answer: } So we've removed 2 parts total, leaving 498 in the batch, and only 1 defective part leaving 4. Therefore the answer is: $\frac{4}{498}$.
+\item What is the probability that all three selected ones are defective?
+\\\textbf{Answer: } This answer is given by:
+\begin{equation}
+\frac{5}{500}\frac{4}{499}\frac{3}{498} = 4.82*10^{-7}
+\end{equation}
+\end{enumerate}
+\noindent \textbf{2.6.4} \emph{Heart failures are due to either natural occurrences (87$\%$) or outside factors (13$\%$). Outside factors are related to induced substances (73$\%$) or foreign objects (27$\%$). Natural occurrences are caused by arterial blockage (56$\%$), disease (27$\%$), and infection (e.g., staph infection) (17$\%$).}
+\begin{enumerate}
+\item Determine the probability that a failure is due to an induced substance.
+\\\textbf{Answer: } 
+\begin{equation}
+.13 * .73 = .0949
+\end{equation}
+\item Determine the probability that a failure is due to disease or infection. 
+\begin{equation}
+\begin{split}
+P(Disease) &= .87*.27 \\
+P(Infection) &= .87 * .17\\
+P(Disease)|P(Infection) &= .87*.27 + .87*.17 = 0.3828
+\end{split}
+\end{equation}
+\end{enumerate}
+\noindent \textbf{2.7.3} \emph{A batch of 500 containers of frozen orange juice contains 5 that are defective. Two are selected, at random, without replacement, from the batch. Let A and B denote the events that the first and second containers selected are defective, respectively.}
+\begin{enumerate}
+\item Are A and B independent events?
+\\\textbf{Answer: } No, because they were not replaced. Therefore first event, effected the second event's probability.
+\item If the sampling were done with replacement, would A and B be independent?
+\\\textbf{Answer: } Yes, because the probability of getting a defective juice would not change no matter how many juices were tested and then replaced.
+\end{enumerate}
+
+\noindent \textbf{2.8.3} \emph{A new analytical method to detect pollutants in water is being tested. This new method of chemical analysis is important because, if adopted, it could be used to detect three different contaminants—organic pollutants, volatile solvents, and chlorinated compounds—instead of having to use a single test for each pollutant. The makers of the test claim that it can detect high levels of organic pollutants with 99.7$\%$ accuracy, volatile solvents with 99.95 $\%$ accuracy, and chlorinated compounds with 89.7$\%$ accuracy. If a pollutant is not present, the test does not signal. Samples are prepared for the calibration of the test and 60$\%$ of them are contaminated with organic pollutants, 27$\%$ with volatile solvents, and 13$\%$ with traces of chlorinated compounds. A test sample is selected randomly.}
+\begin{enumerate}
+\item What is the probability that the test will signal?
+\\\textbf{Answer: } 
+\begin{equation}
+.6 * .997 + .27 * .9995 + .13*.897 = 0.984675
+\end{equation}
+\item If the test signals, what is the probability that chlorinated compounds are present?
+\\\textbf{Answer:}
+\begin{equation}
+0.897 * 0.13 = 0.116
+\end{equation}
+\end{enumerate}
+
+\noindent \textbf{3.1.15} \emph{ In a semiconductor manufacturing process, three wafers from a lot are tested. Each wafer is classified as pass or fail. Assume that the probability that a wafer passes the test is 0.8 and that wafers are independent. Determine the probability mass function of the number of wafers from a lot that pass the test.}
+\\\textbf{Answer: } So we'll say pass is represented by $p$ and fail is represented by $f$. Therefore we know the following:
+\begin{equation}
+\begin{split}
+P(p) &= 0.8 \\
+P(f) &= 0.2
+\end{split}
+\end{equation}
+Then our random variable $X$ can have the possible values of 0, 1, 2, or 3, where each number represents the number of passing wafer tests. The probability mass function is described in the following table
+\begin{center}
+\begin{tabular} {l| l| l}
+X & x & $P(X = x)$ \\
+\hline
+$X = 0$ & (f, f, f) & $ (0.2^3) = 0.008$ \\
+$X = 1 $& (p, f, f), (f, p, f), (f, f, p)  &  $ 3(0.8^1)(0.2^2) = 0.096$ \\
+$X = 2 $& (p, p, f), (f, p, p), (p, f, p) & $3(0.8^2)(0.2^1) = 0.384$ \\
+$X = 3 $& (p, p, p) &$ (0.8^3) = 0.512 $
+\end{tabular}
+\end{center}
+\noindent \textbf{3.2.5} \emph{Determine the cumulative distribution function for the random variable in Exercise 3.1.15.}
+\\\textbf{Answer: } To find the cumulative distributation function (CDF) we look to the table from the previous problem and sum the last column to get the cumulative probabilities. This is shown in the last column of the table below:
+\begin{center}
+\begin{tabular} {l| l| l}
+X &  $P(X = x)$ & $F(x)$ \\
+\hline
+$X = 0$ & $ (0.2^3) = 0.008$ & 0.008 \\
+$X = 1 $  &  $ 3(0.8^1)(0.2^2) = 0.096$&0.104 \\
+$X = 2 $& $3(0.8^2)(0.2^1) = 0.384$ &0.488\\
+$X = 3 $&$ (0.8^3) = 0.512$ & 1 
+\end{tabular}
+\end{center}
+\noindent \textbf{3.3.7} \emph{The range of the random variable X is [0, 1, 2, 3, x] where x is unknown. If each value is equally likely and the mean of X is 6, determine x. }
+\\\textbf{Answer: } Since all the values are equally likely the probability of X being any given value is 1/5. Therefore we can say the following:
+\begin{equation}
+\begin{split}
+\mu &=\sum_{x} xf(x) = (0)\frac{1}{5} + (1)\frac{1}{5} + (2)\frac{1}{5} + (3)\frac{1}{5} + x\frac{1}{5} \\
+\mu &= \frac{6}{5} + \frac{x}{5} \\
+\end{split}
+\end{equation}
+
+We also know that the mean is 6, so now we can solve for x:
+\begin{equation}
+\begin{split}
+\mu &= 6 = \frac{6}{5} + \frac{x}{5} \\
+6 - \frac{6}{5} &= \frac{x}{5} \\
+24 &= x
+\end{split}
+\end{equation}
+
+
+\noindent \textbf{3.5.1} \emph{For each scenario (a)–(h), state whether or not the binomial distribution is a reasonable model for the random variable and why. State any assumptions you make.}
+\textbf{(a):} A production process produces thousands of temperature transducers. Let X denote the number of nonconforming transducers in a sample of size 30 selected at random from the process.
+\\\textbf{Answer: } First we assume since there are so many temperature transducers produced (thousands) then each transducer 'test' event will be independent from the other 29. This implies that the probability of success for each trial is constant and that the success or failure of one event doesn't affect another. Then with that in mind we can say that this process does follow a binomial distribution as the trials are independent, the trial can have only two outcomes, a part failing or succeeding, and the probability of success for each part conforming is consistent throughout the test. \\\\
+\textbf{(b):} From a batch of 50 temperature transducers, a sample of size 30 is selected without replacement. Let X denote the number of nonconforming transducers in the sample.
+\\\textbf{Answer: } This cannot be described by a binomial distribution. Since there is a smaller batch that the sample size was picked from the probability of success will change as each transducer is tested. \\\\
+\textbf{(c):} Four identical electronic components are wired to a controller that can switch from a failed component to one of the remaining spares. Let X denote the number of components that have failed after a specified period of operation.
+\\\textbf{Answer: } The problem statement implies that the probability of the failure changes with time. Thus the probability is not constant over time and cannot be described by a binomial distribution. \\\\
+\textbf{(d):} Let X denote the number of accidents that occur along the federal highways in Arizona during a one-month period.
+\\\textbf{Answer: } This cannot be described by a binomial distribution as a single trial (accidents occuring in a one-month period) does not consist of only 2 outcomes. There could be 0 accidents, 1 accident, 2 accidents, etc. that can occur within a one-month period. \\\\
+\textbf{(e):} Let X denote the number of correct answers by a student taking a multiple-choice exam in which a student can eliminate some of the choices as being incorrect in some questions and all of the incorrect choices in other questions.
+\\\textbf{Answer: } Although there are only two possible outcomes with each trial (correct on a question or not correct), this is not a binomial distribution. That is because the probability for each trial (question) changes based on knowledge the student is bringing into the test. \\\\
+\textbf{(f):} Defects occur randomly over the surface of a semiconductor chip. However, only 80$\%$ of defects can be found by testing. A sample of 40 chips with one defect each is tested. Let X denote the number of chips in which the test finds a defect.
+\\\textbf{Answer: } We first assume that the phrase "A sample of 40 chips with one defect each" means that our sample space is made up of 40 chips and each chip has it's own defect. This meaning the only probability in play is the 80$\%$ of actually identifying the defect. Then a success for each trial is defined as identifying the defect in a given chip. In this situation each chip 'test' has only 2 outcomes (defect identified or not) and the probability of identifying the defect on a given chip is 0.8 no matter what chip is under investigation. The latter point here implies that the trials are independent and the probabilty of success is constant for each trial. Thus this situation can be described by a binomial distribution.\\\\
+\textbf{(g):} Errors in a digital communication channel occur in bursts that affect several consecutive bits. Let X denote the number of bits in error in a transmission of 100,000 bits.
+\\\textbf{Answer: } This is not a binomial distribution as one error affects the probability that there will be other errors. These trials are not independent.\\\\
+\textbf{(h):} Let X denote the number of surface flaws in a large coil of galvanized steel.
+\\\textbf{Answer: } This is not a binomial distribution as there are more than 2 outcomes in any given trial. There can be 0 surface flaws to an infinite amount of surface flaws.\\\\\\
+\textbf{3.5.15} Consider the lengths of stay at a hospital’s emergency department in Exercise 3.1.19. Assume that five persons independently arrive for service.
+\begin{enumerate}
+\item What is the probability that the length of stay of exactly one person is less than or equal to 4 hours?
+\\\textbf{Answer: } From excercise 3.1.19 we find that the probability that a person stays less than or equal to 4 hours to be 0.516. Since this problem can be described with a binomial distirbution X is going to be the number of people entering the hospital (specific samples going through the 'test'), p will be 0.516, and n is the total number of samples. Now we can use the binomial distribution to say the following:
+\begin{equation}
+\begin{split}
+P(X = 1) &= \binom 51 (0.516)^1(1-0.516)^4 = 0.1415
+\end{split}
+\end{equation}
+\item What is the probability that exactly two people wait more than 4 hours?
+\\\textbf{Answer: } Using the previous formula, however this time x = 2, and p = 1-0.516 = 0.484 we now say the following:
+\begin{equation}
+\begin{split}
+P(X = 2) &= \binom 52 (0.484)^2(1-0.484)^3 = 0.3218
+\end{split}
+\end{equation}
+\item What is the probability that at least one person waits more than 4 hours? 
+\\\textbf{Answer: } To find the answer here, we first will answer the inverse of the problem statement, the question "what is the probability no one waits more than 4 hours" or "what is the probability all 5 people wait 4 hours or less?". Since we know the probability of a given person waiting less than or equal to 4 hours is 0.516, the probability that all 5 people within this experiment wait less than four hours can be given by:
+\begin{equation}
+\begin{split}
+(0.516)^5 = 0.03658
+\end{split}
+\end{equation}
+Then the complement of that will give answer to the original question. 
+\begin{equation}
+1 - (0.516)^5 = 1 -  0.03658 = 0.96341
+\end{equation}
+\end{enumerate}
+
+\noindent\textbf{5.1.3:} In the transmission of digital information, the probability that a bit has high, moderate, and low distortion is 0.01, 0.04, and 0.95, respectively. Suppose that three bits are transmitted and that the amount of distortion of each bit is assumed to be independent. Let X and Y denote the number of bits with high and moderate distortion out of the three, respectively. Determine:
+\begin{enumerate}
+\item $f_{XY}(x,y)$
+\\\textbf{Answer:} First I'll be finding $f_y$ and in the next question I already found $f_x$. Then I can use the fact these are independent to find $f_{XY}(x,y)$.
+
+\begin{equation}
+\begin{split}
+f_y(0) &= (1-0.04)^3 = 0.8847\\
+f_y(1) & = 3*(0.04)(1-0.04)^2 = 0.1105\\
+f_y(2) & = 3*(0.04)^2(1-0.04) = 0.004608\\
+f_y(3) & = 0.04^3 = 0.000064
+\end{split}
+\end{equation}
+Now for $f_{XY}(x,y)$:
+\begin{equation}
+\begin{split}
+f_{XY}(x=0,y=0) &= f_x(0)f_y(0) = 0.970299*0.8847=0.8584235253\\
+f_{XY}(x=1,y=0) &= f_x(1)f_y(0) = 0.029403*0.8847=0.0260128341\\
+f_{XY}(x=2,y=0) &= f_x(2)f_y(0) = 0.000297*0.8847=0.0002627559\\
+f_{XY}(x=3,y=0) &= f_x(3)f_y(0) = 1*10^{-6}*0.8847=8.847*10^{-7}\\
+f_{XY}(x=0,y=1) &= f_x(0)f_y(1) = 0.970299*0.1105=0.1072180395\\
+f_{XY}(x=1,y=1) &= f_x(1)f_y(1) = 0.029403*0.1105=0.0032490315\\
+f_{XY}(x=2,y=1) &= f_x(2)f_y(1) = 0.000297*0.1105=0.0000328185\\
+f_{XY}(x=3,y=1) &= f_x(3)f_y(1) = 1*10^{-6}*0.1105=1.105*10^{-7}\\
+f_{XY}(x=0,y=2) &= f_x(0)f_y(2) = 0.970299*0.004608=0.004471137792\\
+f_{XY}(x=1,y=2) &= f_x(1)f_y(2) = 0.029403*0.004608=0.000135489024\\
+f_{XY}(x=2,y=2) &= f_x(2)f_y(2) = 0.000297*0.004608=1.368576*10^{-6}\\
+f_{XY}(x=3,y=2) &= f_x(3)f_y(2) = 1*10^{-6}*0.004608=4.608*10^{-9}\\
+f_{XY}(x=0,y=3) &= f_x(0)f_y(3) = 0.970299*0.000064=0.000062099136\\
+f_{XY}(x=1,y=3) &= f_x(1)f_y(3) = 0.029403*0.000064=1.881792*10^{-6}\\
+f_{XY}(x=2,y=3) &= f_x(2)f_y(3) = 0.000297*0.000064=1.9008*10^{-8}\\
+f_{XY}(x=3,y=3) &= f_x(3)f_y(3) = 1*10^{-6}*0.000064=6.4*10^{-11}
+\end{split}
+\end{equation}
+
+\item $f_{X}(x)$
+\\\textbf{Answer:}
+\begin{equation}
+\begin{split}
+f_x(0) &= (1-0.01)^3 = 0.970299\\
+f_x(1) & = 3*(0.01)(1-0.01)^2 = 0.029403\\
+f_x(2) & = 3*(0.01)^2(1-0.01) = 0.000297\\
+f_x(3) & = 0.01^3 = 1*10^{-6}
+\end{split}
+\end{equation}
+
+\item $E_{X}(x)$
+\\\textbf{Answer:}
+\begin{equation}
+\begin{split}
+E(X) &= 0*f_x(0) + 1*f_x(1)+2*f_x(2)+3*f_x(3) \\
+&= 0 * 0.970299 + 1 * 0.029403 + 2*0.000297 + 3*1*10^{-6} \\
+&=0.03
+\end{split}
+\end{equation}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent\textbf{5.1.3:} Determine the covariance and correlation for the following joint probability distribution:
+\\\textbf{Answer:}
+First find the mean of X and Y
+\begin{equation}
+\begin{split}
+E[X] &= 1*\frac{3}{8} + 2*\frac{1}{2} + 4*\frac{1}{8} = 1.875\\
+E[Y] = 3*\frac{1}{8} + 4*{1}{4} + 5*\frac{1}{2} + 6*\frac{1}{8} = 19.625
+\end{split}
+\end{equation}
+Now for the covariance
+\begin{equation}
+\begin{split}
+&=(1-1.875)*(3-19.625)*1/8 +(1-1.875)*(4-19.625)*1/4 + (2-1.875)*(5-19.625)*1/2 + (4-1.875)*(6-19.625)*1/8\\
+&= 0.703125
+\end{split}
+\end{equation}
+Variance:
+\begin{equation}
+\begin{split}
+V(X) &= \sum(x - 1.875)^2*P(X = x) =(1-1.875)^2*3/8 + (2-1.875)^2*1/2 + (4-1.875)^2*1/8\\
+&=0.85937\\
+V(Y) &= \sum(y-19.625)^2*P(Y=y) = (3-19.625)^2*1/8 + (4-19.625)^2*1/4 + (5-19.625)^2*1/2 + (6-19.625)^2*1/8\\
+&= 225.734375
+\end{split}
+\end{equation}
+Correlation:
+\begin{equation}
+\rho = \frac{0.703125}{\sqrt{0.85937 * 225.734375}} = 0.0504828
+\end{equation}
+
+
+
+
+
+
+\noindent\textbf{3.5.8:} A multiple-choice test contains 25 questions, each with four answers. Assume that a student just guesses on each question.
+\begin{enumerate}
+\item What is the probability that the student answers more than 20 questions correctly?
+\\\textbf{Answer: } In this situation X = 21 through 25, n = 25, and $p_s$ = 0.25. This results in the following summation:
+\begin{equation}
+\begin{split}
+P(X = {21,22,23,24,25}) &=\sum_{x=21}^{25}  \binom {25}{x} (0.25)^x(1-0.25)^{25 - x} \\
+& = \binom {25}{21} (0.25)^{21}(1-0.25)^{4} + \binom {25}{22} (0.25)^{22}(1-0.25)^{3} \\
+&+\binom {25}{23} (0.25)^{23}(1-0.25)^{2} + \binom {25}{24} (0.25)^{24}(1-0.25)^{1} \\
+&+ \binom {25}{25} (0.25)^{25}(1-0.25)^{0} \\
+&= 9.1*10^{-10} + 5.5*10^{-11} + 2.39*10^{-12} + 6.6*10^{-14} + 8.88*10^{-16} \\
+&= 9.67e-10
+\end{split}
+\end{equation}
+\item What is the probability that the student answers fewer than 5 questions correctly?
+\\\textbf{Answer: } Now in this situation X = 0 through 4, n = 25, and $p_s$ is the same as the previous problem, 0.25. This results in the following summation
+\begin{equation}
+\begin{split}
+P(X = {0,1,2,3,4}) &=\sum_{x=0}^{4}  \binom {25}{x} (0.25)^x(1-0.25)^{25 - x} \\
+& = \binom {25}{0} (0.25)^{0}(1-0.25)^{25} + \binom {25}{1} (0.25)^{1}(1-0.25)^{24} \\
+&+ \binom {25}{2} (0.25)^{2}(1-0.25)^{23} + \binom {25}{3} (0.25)^{3}(1-0.25)^{22} \\
+&+ \binom {25}{4} (0.25)^{4}(1-0.25)^{21} \\
+&= 0.00075 + 0.0062 + 0.025 + 0.0641 + 0.1175\\
+&= 0.2135
+\end{split}
+\end{equation}
+\end{enumerate}
+
+
+\noindent\textbf{5.1.1:} Show that following function satisfies the properties of a join probability mass function.
+\begin{enumerate}
+\item P(X$<$2.5,Y$<$3)
+\\\textbf{Answer: }
+\begin{equation}
+P(X<2.5, Y < 3) = f_{XY}(x= 1, 1.5, y = 1, 2) = \frac{1}{4} + \frac{1}{8} = \frac{3}{8}
+\end{equation}
+\item P(X$<$2.5)
+\\\textbf{Answer: }
+\begin{equation}
+P(X<2.5) = f_{X}(x= 1, 1.5, 1.5) = \frac{1}{4} + \frac{1}{8} +\frac{1}{4}= \frac{5}{8}
+\end{equation}
+\item P(Y$<$3)
+\\\textbf{Answer: }
+\begin{equation}
+P(Y<3) = f_{Y}(y= 1,2) = \frac{1}{4} + \frac{1}{8} = \frac{3}{8}
+\end{equation}
+\item P(X$>$1.8,Y$>$4.7)
+\\\textbf{Answer: }
+\begin{equation}
+P(X>1.8, Y > 4.7) = f_{XY}(x= 2.5, 3, y = 5) = \frac{1}{8}
+\end{equation}
+\item E(X), Y(X), V(X), and V(Y)
+\\\textbf{Answer: }
+\begin{equation}
+\begin{split}
+E(X) &= \frac{1}{4} + 1.5*\frac{3}{8} + 2.5*\frac{1}{4} + 3 * \frac{1}{8} = 1.8125\\
+E(Y) &= 1*\frac{1}{4} + 2*\frac{1}{8} + 3*\frac{1}{4} + 4*\frac{1}{4}+5 * \frac{1}{8} = 2.875\\
+V(X) &= \sum(x - 1.8125)^2*P(X = x) =(1 - 1.8125)^2 * 1/4 + (1.5 - 1.8125)^2 * 3/8\\
+&+ (2.5 - 1.8125)^2 * 1/4+ (3 - 1.8125)^2 * 1/8\\
+&= 0.49609375\\
+V(Y) &= \sum(y-2.875)^2*P(Y=y) = (1 - 2.875)^2 * 1/4 + (2 - 2.875)^2 * 1/8\\
+&+ (3 - 2.875)^2 * 1/4+ (4 - 2.875)^2 * 1/4+ (5 - 2.875)^2 * 1/8\\
+&=1.859375
+\end{split}
+\end{equation}
+
+\item P(X = x)
+\\\textbf{Answer: }
+\begin{equation}
+\begin{split}
+P(X = 1) & = 1/4\\
+P(X = 1.5) &= 3/8\\
+P(X =2.5) &= 1/4\\
+P(X = 3) &= 1/4
+\end{split}
+\end{equation}
+
+\end{enumerate}
+
+
+
+\end{document}
+
+
+
+
+
